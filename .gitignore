@@ -1,1 +1,8 @@
 e_waste_tracker/e_waste_tracker/__pycache__/
+e_waste_tracker/warehouse/__pycache__/
+e_waste_tracker/warehouse/migrations/__pycache__/
+e_waste_tracker/transactions/__pycache__/
+e_waste_tracker/transactions/migrations/__pycache__/
+e_waste_tracker/db.sqlite3
+e_waste_tracker/users/__pycache__/
+e_waste_tracker/users/migrations/__pycache__/
