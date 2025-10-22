@@ -4,7 +4,11 @@ from django.http import HttpResponse
 
 # Create your views here.
 def return_login_page(request):
-    return render(request, "users/main.html")
+    return render(request, "users/login.html")
+
+def return_signup_page(request):
+    return render(request, "users/signup.html")
 
 def return_root_directory(request):
-    return HttpResponse("Server is running on Port 8000!")
+    return render(request, "users/main.html")
+    
