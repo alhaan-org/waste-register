@@ -1,80 +1,50 @@
 {% extends "users/main.html" %}
 {% load static %}
 {% block content %}
-<main class="d-flex justify-content-center align-items-center h-fit px-5">
-  <div class="w-100" style="padding: 0 25%;">
-    <form class="p-5 border rounded-3 bg-light shadow-sm">
+<main class="d-flex justify-content-center align-items-center vh-150 px-2">
+  <div class="w-100" style="padding: 0 20%;">
+    <form class="p-3 border rounded-3 bg-light shadow-sm">
       <div class="text-center mb-4">
-       <div class="flex align-items-center justify-center">
-          <img
-            src="{% static 'images/warehouse.png' %}"
-            alt="Logo"
-            width="50"
-            height="50"
-            class="mb-3"
-          />
+        <div class="flex align-items-center justify-center">
+          <img src="{% static 'images/warehouse.png' %}" alt="Logo" width="50" height="50" class="mb-3" />
           <p>E-Waste Warehouse Management</p>
         </div>
         <h1 class="h4 mb-3 fw-normal">Create your account</h1>
       </div>
 
-      <div class="form-floating mb-3">
-        <input
-          type="text"
-          class="form-control"
-          id="username"
-          placeholder="Your name"
-        />
+      <div class="form-floating-sm mb-3">
         <label for="username">Username</label>
+        <input type="text" class="form-control" id="username" placeholder="Your name" />
+
       </div>
 
-      <div class="form-floating mb-3">
-        <input
-          type="email"
-          class="form-control"
-          id="email"
-          placeholder="youremailaddress@domain.com"
-        />
+      <div class="form-floating-sm mb-3">
         <label for="email">Email address</label>
+        <input type="email" class="form-control" id="email" placeholder="youremailaddress@domain.com" />
+
       </div>
 
-      <div class="form-floating mb-3">
-        <input
-          type="password"
-          class="form-control"
-          id="password"
-          placeholder="Enter Password"
-        />
+      <div class="form-floating-sm mb-3">
         <label for="password">Enter Password</label>
+        <input type="password" class="form-control" id="password" placeholder="Enter Password" />
+
       </div>
 
-      <div class="form-floating mb-3">
-        <input
-          type="password"
-          class="form-control"
-          id="confirmPassword"
-          placeholder="Confirm Password"
-        />
+      <div class="form-floating-sm mb-3">
         <label for="confirmPassword">Confirm Password</label>
+        <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password" />
+
       </div>
 
-      <div class="form-floating mb-4">
-        <input
-          type="text"
-          class="form-control"
-          id="phone"
-          placeholder="03XXXXXXXXX"
-        />
+      <div class="form-floating-sm mb-4">
         <label for="phone">Phone Number</label>
+        <input type="text" class="form-control" id="phone" placeholder="03XXXXXXXXX" />
+
       </div>
-        <div class="form-floating mb-4">
-        <input
-          type="text"
-          class="form-control"
-          id="id-card"
-          placeholder="With Dashes"
-        />
-        <label for="id-card">NADRA CNIC No. (With Dashes)</label>
+      <div class="form-floating-sm mb-4">
+        <label for="id-card">NADRA CNIC No.</label>
+        <input type="text" class="form-control" id="id-card" placeholder="With Dashes" />
+
       </div>
       <div class="mb-3">
         Already have an account?
@@ -84,7 +54,7 @@
       <div id="errorDiv" class="mb-2 bg-danger text-light">
         <p class="flex align-items-center gap-2 text-light"><span id="error" class="p-2"></span></p>
       </div>
-      <button class="btn btn-primary w-100 py-2" type="submit">
+      <button id="button" class="btn btn-primary w-100 py-2" type="submit">
         Sign Up
       </button>
 

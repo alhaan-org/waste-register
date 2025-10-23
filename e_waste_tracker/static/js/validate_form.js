@@ -7,15 +7,18 @@ window.addEventListener("DOMContentLoaded", () => {
   const cnicNo = document.getElementById("id-card");
   const err = document.getElementById("error");
   const errDiv = document.getElementById("errorDiv");
+  const button = document.getElementById("button");
 
   const showError = (msg) => {
     err.textContent = msg;
     errDiv.classList.remove("d-none");
+    button.disabled = true
   };
 
   const clearError = () => {
     err.textContent = "";
     errDiv.classList.add("d-none");
+    button.disabled = false
   };
 
   const validateUserName = () => {
@@ -82,17 +85,25 @@ window.addEventListener("DOMContentLoaded", () => {
     else clearError();
   };
   // add listeners
-  username.addEventListener("input", validateUserName);
+
   emailField.addEventListener("input", validateEmail);
   password.addEventListener("input", validatePassword);
-  confirmPassword.addEventListener("input", validateConfirmPassword);
-  cnicNo.addEventListener("input", validateCnicNo);
-  phone.addEventListener("input", validatePhoneNumber);
-  // run initial validations
-  validateCnicNo();
-  validatePhoneNumber();
-  validateConfirmPassword();
+
+  if (username && confirmPassword && cnicNo && phone) {
+    username.addEventListener("input", validateUserName);
+    confirmPassword.addEventListener("input", validateConfirmPassword);
+    cnicNo.addEventListener("input", validateCnicNo);
+    phone.addEventListener("input", validatePhoneNumber);
+
+    // run initial validations
+    validateCnicNo();
+    validatePhoneNumber();
+    validateConfirmPassword();
+    validateUserName();
+  }
+  
+ // run initial validations
   validatePassword();
   validateEmail();
-  validateUserName();
+  
 });

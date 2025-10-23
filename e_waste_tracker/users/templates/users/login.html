@@ -1,7 +1,7 @@
 {% extends "users/main.html" %} {% load static %} {% block content %}
-<main class="d-flex justify-content-center align-items-center h-fit px-5">
-  <div class="w-100" style="padding: 0 25%">
-    <form class="p-5 border rounded-3 bg-light shadow-sm">
+<main class="d-flex justify-content-center align-items-center vh-100 px-2">
+  <div class="w-100" style="padding: 0 20%">
+    <form class="p-3 border rounded-3 bg-light shadow-sm">
       <div class="text-center mb-4">
         <div class="flex align-items-center justify-center">
           <img
@@ -14,7 +14,7 @@
           <p>E-Waste Warehouse Management</p>
         </div>
 
-        <h1 class="h4 mb-3 fw-normal">Sign into your account</h1>
+        <h1 class="h3 mb-3 fw-normal">Sign into your account</h1>
       </div>
 
       <div class="form-floating mb-3">
@@ -52,9 +52,11 @@
         <a href="{% url 'signup' %}">Create for Free</a>
       </div>
       <div id="errorDiv" class="mb-2 bg-danger text-light">
-        <p class="flex align-items-center gap-2 text-light"><span id="error" class="p-2"></span></p>
+        <p class="flex align-items-center gap-2 text-light">
+          <span id="error" class="p-2"></span>
+        </p>
       </div>
-      <button class="btn btn-primary w-100 py-2" type="submit">Sign in</button>
+      <button id="button" class="btn btn-primary w-100 py-2" type="submit">Sign in</button>
 
       <p class="mt-4 mb-0 text-body-secondary text-center">
         © Copyrights by Software Inc.
