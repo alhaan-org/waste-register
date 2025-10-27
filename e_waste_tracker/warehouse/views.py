@@ -1,6 +1,9 @@
 from django.shortcuts import render
+from django.views import View
 from django.http import HttpResponse
 # Create your views here.
 
-def return_warehouse_dashboard(request):
-    return HttpResponse("Warehouse Dashboard Page")
+class WareHouseView(View):
+    def get(self, request):
+        return HttpResponse("This is Warehouse Page")
+
