@@ -1,0 +1,90 @@
+{% extends "warehouse/dashboard.html" %}
+{% block content %}
+<div class="container mt-4">
+
+  <h3 class="mb-4 fw-semibold">Settings</h3>
+
+  <!-- Preferences Section -->
+  <div class="row mb-4">
+    <div class="col-md-6">
+      <div class="card shadow-sm p-3">
+        <h5 class="mb-3">Preferences</h5>
+
+        <!-- Dark Mode Toggle -->
+        <div class="form-check form-switch mb-3">
+          <input class="form-check-input" type="checkbox" id="darkModeToggle">
+          <label class="form-check-label" for="darkModeToggle">Dark Mode</label>
+        </div>
+
+        <!-- Email Updates Toggle -->
+        <div class="form-check form-switch">
+          <input class="form-check-input" type="checkbox" id="emailUpdatesToggle">
+          <label class="form-check-label" for="emailUpdatesToggle">Email Updates</label>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Profile Section -->
+  <div class="row">
+    <div class="col-md-8">
+      <div class="card shadow-sm p-3">
+        <h5 class="mb-3">Profile Settings</h5>
+
+        <form id="profileForm" enctype="multipart/form-data">
+          <div class="row g-3">
+            
+            <!-- Profile Picture -->
+            <div class="col-md-4 text-center">
+              <img src="https://via.placeholder.com/120" alt="Profile Picture" class="rounded-circle mb-3" id="profilePreview">
+              <div class="mb-3">
+                <label for="profilePic" class="form-label">Change Picture</label>
+                <input class="form-control" type="file" id="profilePic" accept="image/*">
+              </div>
+            </div>
+
+            <!-- Profile Info -->
+            <div class="col-md-8">
+              <div class="mb-3">
+                <label for="name" class="form-label">Full Name</label>
+                <input type="text" class="form-control" id="name" placeholder="John Doe">
+              </div>
+              <div class="mb-3">
+                <label for="email" class="form-label">Email Address</label>
+                <input type="email" class="form-control" id="email" placeholder="john@example.com">
+              </div>
+              <div class="mb-3">
+                <label for="phone" class="form-label">Phone Number</label>
+                <input type="text" class="form-control" id="phone" placeholder="+92 300 1234567">
+              </div>
+            </div>
+
+            <!-- CRUD Buttons -->
+            <div class="col-12 text-end">
+              <button type="button" class="btn btn-success me-2">Save</button>
+              <button type="button" class="btn btn-warning me-2">Update</button>
+              <button type="button" class="btn btn-danger">Delete</button>
+            </div>
+
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  // Preview uploaded profile picture
+  const picInput = document.getElementById('profilePic');
+  const picPreview = document.getElementById('profilePreview');
+
+  picInput?.addEventListener('change', (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      picPreview.src = URL.createObjectURL(file);
+    }
+  });
+</script>
+{% endblock %}

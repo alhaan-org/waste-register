@@ -1,0 +1,53 @@
+{% extends 'warehouse/dashboard.html' %}
+{% load static %}
+{% block content %}
+<div class="container-fluid mt-4">
+
+    <!-- Header -->
+    <h3 class="mb-4 fw-semibold">Warehouse Status</h3>
+
+    <div class="row g-3">
+
+        <!-- Owner Info -->
+        <div class="col-md-6">
+            <div class="card shadow-sm border-0">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold">Owner Details</h5>
+                    <p><strong>Name:</strong> Junaid Brohi</p>
+                    <p><strong>CNIC:</strong> 42101-1234567-3</p>
+                    <p><strong>Phone:</strong> +92 300 1234567</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Warehouse Info -->
+        <div class="col-md-6">
+            <div class="card shadow-sm border-0">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold">Warehouse Information</h5>
+                    <p><strong>Warehouse Name:</strong> Brohi Enterprises</p>
+                    <p>
+                        <strong>Status:</strong>
+                        <span class="badge bg-success">Registered</span>
+                    </p>
+                    <button class="btn btn-success">Request Registration</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Warehouse Address + Location -->
+        <div class="col-12">
+            <div class="card shadow-sm border-0">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold">Warehouse Location</h5>
+                    <p><strong>Address:</strong> Plot No. 457, Korangi Creek, Korangi Industrial Area, Karachi</p>
+                    <div class="ratio ratio-16x9">
+                       <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d28964.691627115408!2d67.11117607669536!3d24.843812312192373!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3eb33bc211b229af%3A0x1c5a3135d6475988!2sKorangi%20Industrial%20Area%2C%20Karachi%2C%20Pakistan!5e0!3m2!1sen!2s!4v1761664231135!5m2!1sen!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
