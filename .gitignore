@@ -6,3 +6,10 @@ e_waste_tracker/transactions/migrations/__pycache__/
 e_waste_tracker/db.sqlite3
 e_waste_tracker/users/__pycache__/
 e_waste_tracker/users/migrations/__pycache__/
+/.idea/.gitignore
+/e_waste_tracker/warehouse/migrations/0001_initial.py
+/.idea/misc.xml
+/.idea/modules.xml
+/.idea/inspectionProfiles/profiles_settings.xml
+/.idea/vcs.xml
+/.idea/waste-register-1.iml
