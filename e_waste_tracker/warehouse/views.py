@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views import View
 from django.http import HttpResponse
+from .models import Warehouse
 # Create your views here.
 
 class WareHouseView(View):
@@ -9,7 +10,9 @@ class WareHouseView(View):
 
 class WareHouseStatus(View):
     def get(self, request):
-        return render(request, "warehouse/status.html")
+        user = request.user
+        context = {"user": user}
+        return render(request, "warehouse/status.html", context)
 
 class WareHouseCheckInOut(View):
     def get(self, request):
