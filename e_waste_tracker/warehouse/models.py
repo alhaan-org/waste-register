@@ -26,7 +26,7 @@ class Warehouse(models.Model):
 
     def total_profit(self):
         total_profit_expr = ExpressionWrapper(
-            F('sold-price') - F('cost-price'),
+            F('sold_price') - F('cost_price'),
             output_field = models.DecimalField(max_digits=15, decimal_places=2)
         )
         profit = self.items.filter(is_sold=True).aggregate(
