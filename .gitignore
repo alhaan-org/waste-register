@@ -13,3 +13,4 @@ e_waste_tracker/users/migrations/__pycache__/
 /.idea/inspectionProfiles/profiles_settings.xml
 /.idea/vcs.xml
 /.idea/waste-register-1.iml
+.idea/
