@@ -18,7 +18,7 @@ def return_login_page(request):
         
         if user is not None:
             login(request, user)
-            return redirect("warehouse:home")
+            return redirect("warehouse:status")
         else:
             messages.info(request, "Authentication failed")
     return render(request, "users/login.html")
