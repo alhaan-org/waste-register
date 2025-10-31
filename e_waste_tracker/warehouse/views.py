@@ -33,37 +33,37 @@ class WareHouseCheckInOut(View):
 
     # This code is for testing, This will be removed since it is causing bugs,
     # The only way to resolve is to make AJAX Views for CRUD operations
-    def post(self, request):
-        warehouse = request.user.warehouse_owner
-        action = request.POST.get('action')
-        form = ItemForm(request.POST)
-
-        if action == "add":
-            if form.is_valid():
-                new_item = form.save(commit=False)
-                new_item.warehouse = warehouse
-                new_item.save()
-        elif action == "update":
-            item_id = request.POST.get("item_id")  # you need a hidden input for item_id
-            item = Item.objects.get(pk=item_id, warehouse=warehouse)
-            for field, value in form.cleaned_data.items():
-                setattr(item, field, value)
-            item.save()
-        elif action == "delete":
-            item_id = request.POST.get("item_id")
-            Item.objects.filter(pk=item_id, warehouse=warehouse).delete()
-        elif action == "checkin":
-            item_id = request.POST.get("item_id")
-            item = Item.objects.get(pk=item_id, warehouse=warehouse)
-            item.is_sold = False
-            item.save()
-        elif action == "checkout":
-            item_id = request.POST.get("item_id")
-            item = Item.objects.get(pk=item_id, warehouse=warehouse)
-            item.is_sold = True
-            item.save()
-
-        return redirect('warehouse:checkinandout')
+    # def post(self, request):
+    #     warehouse = request.user.warehouse_owner
+    #     action = request.POST.get('action')
+    #     form = ItemForm(request.POST)
+    #
+    #     if action == "add":
+    #         if form.is_valid():
+    #             new_item = form.save(commit=False)
+    #             new_item.warehouse = warehouse
+    #             new_item.save()
+    #     elif action == "update":
+    #         item_id = request.POST.get("item_id")  # you need a hidden input for item_id
+    #         item = Item.objects.get(pk=item_id, warehouse=warehouse)
+    #         for field, value in form.cleaned_data.items():
+    #             setattr(item, field, value)
+    #         item.save()
+    #     elif action == "delete":
+    #         item_id = request.POST.get("item_id")
+    #         Item.objects.filter(pk=item_id, warehouse=warehouse).delete()
+    #     elif action == "checkin":
+    #         item_id = request.POST.get("item_id")
+    #         item = Item.objects.get(pk=item_id, warehouse=warehouse)
+    #         item.is_sold = False
+    #         item.save()
+    #     elif action == "checkout":
+    #         item_id = request.POST.get("item_id")
+    #         item = Item.objects.get(pk=item_id, warehouse=warehouse)
+    #         item.is_sold = True
+    #         item.save()
+    #
+    #     return redirect('warehouse:checkinandout')
 
 
 @method_decorator(login_required(login_url="login"), name="dispatch")
@@ -81,3 +81,19 @@ class LogoutWareHouse(View):
     def get(self, request):
         logout(request)
         return redirect("login")
+
+
+class AddItemInItemView(View):
+    pass
+
+class UpdateItemInItemView(View):
+    pass
+
+class DeleteItemInItemView(View):
+    pass
+
+class MarkCheckInItemView(View):
+    pass
+
+class MarkCheckOutInItemView(View):
+    pass
