@@ -20,12 +20,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-8y_th82omf)_-1=5@&@#ivd=^&)z+ffqe%h09p&m@rtne3(v1q'
+SECRET_KEY = "django-insecure-8y_th82omf)_-1=5@&@#ivd=^&)z+ffqe%h09p&m@rtne3(v1q"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+
 ALLOWED_HOSTS = []
+
 
 
 # Application definition
@@ -64,7 +66,6 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'django.template.context_processors.request'
             ],
         },
     },
@@ -75,6 +76,7 @@ WSGI_APPLICATION = 'e_waste_tracker.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
+
 
 DATABASES = {
     'default': {
@@ -126,7 +128,9 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static")
 ]
 
-MEDIA_URL = "images/"
+
+MEDIA_URL = "/images/"
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 

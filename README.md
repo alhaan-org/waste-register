@@ -60,8 +60,7 @@ This project is open-source to encourage collaboration from developers, environm
 ## 💻 Setup Guide
 
 ```bash
-# Clone the repository
-git clone https://github.com/alhaan-org/waste-register.git
+# Clone the repository and after
 cd e-waste-warehouse
 
 # Create virtual environment

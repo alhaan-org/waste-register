@@ -1,5 +1,3 @@
-from idlelib.debugobj import dispatch
-
 from django.contrib.auth import logout
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
@@ -10,7 +8,7 @@ from django.http import JsonResponse
 import json
 
 from .forms import ItemForm
-from .models import Warehouse, Item
+from .models import Item
 # Create your views here.
 
 @method_decorator(login_required(login_url="login"), name="dispatch")
@@ -30,7 +28,11 @@ class WareHouseStatus(View):
 @method_decorator(login_required(login_url="login"), name="dispatch")
 class WareHouseCheckInOut(View):
     def get(self, request):
-        warehouse = request.user.warehouse_owner
+        warehouse = getattr(request.user, 'warehouse_owner', None)
+        if not warehouse:
+            from django.contrib import messages
+            messages.error(request, "Warehouse not configured for your account.")
+            return redirect('warehouse:home')
         items = warehouse.items.all()
         form = ItemForm()
         context = {"items": items, "form": form}
@@ -56,12 +58,18 @@ class LogoutWareHouse(View):
 class AddItemInItemView(View):
     def post(self, request):
         try:
+            warehouse = getattr(request.user, 'warehouse_owner', None)
+            if not warehouse:
+                return JsonResponse({
+                    "status": "error",
+                    "message": "Warehouse not configured for your account."
+                }, status=400)
+            
             data = json.loads(request.body)
             parsed_data = parse_item_data(data)
-            print(request.user.warehouse_owner)
             item = Item(
                 **parsed_data,
-                warehouse=request.user.warehouse_owner
+                warehouse=warehouse
             )
             item.save()
             return JsonResponse({
@@ -70,11 +78,19 @@ class AddItemInItemView(View):
                 "data_received": data
             })
 
-        except Exception as e:
+        except json.JSONDecodeError:
             return JsonResponse({
                 "status": "error",
-                "message": str(e)
+                "message": "Invalid JSON format"
             }, status=400)
+        except Exception as e:
+            import logging
+            logger = logging.getLogger(__name__)
+            logger.error(f"Error in AddItemInItemView: {str(e)}")
+            return JsonResponse({
+                "status": "error",
+                "message": "Server error. Please try again."
+            }, status=500)
 
 class UpdateItemInItemView(View):
     pass

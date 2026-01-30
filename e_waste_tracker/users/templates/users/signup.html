@@ -12,22 +12,43 @@
         </div>
         <h1 class="h4 mb-3 fw-normal">Create your account</h1>
       </div>
-      
+
+      <!-- Display Django messages -->
+      {% if messages %}
+        {% for message in messages %}
+          <div class="alert alert-{% if message.tags %}{{ message.tags }}{% else %}info{% endif %} alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        {% endfor %}
+      {% endif %}
+
       {% for field in form %}
-        <div class="form-floating-sm mb-3">
-          <label for="{{ field.id_for_label }}">{{ field.label }}</label>
-          {{ field }}
-          
-        </div>
+      <div class="form-floating-sm mb-3">
+        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+        {{ field }}
+        {% if field.errors %}
+          <div class="text-danger small mt-1">
+            {% for error in field.errors %}
+              <p class="mb-1">{{ error|safe }}</p>
+            {% endfor %}
+          </div>
+        {% endif %}
+        {% if field.help_text %}
+          <small class="form-text text-muted d-block mt-1">{{ field.help_text|safe }}</small>
+        {% endif %}
+      </div>
       {% endfor %}
       <div class="mb-3">
         Already have an account?
         <a href="{% url "login" %}">Sign in</a>
       </div>
 
-      <div id="errorDiv" class="mb-2 bg-danger text-light">
-        <p class="flex align-items-center gap-2 text-light"><span id="error" class="p-2"></span></p>
+      <div id="errorDiv" class="mb-2 bg-danger text-light d-none">
+        <p class="flex align-items-center gap-2 text-light"><span id="error" class="p-2">
+          </span></p>
       </div>
+     
       <button id="button" class="btn btn-primary w-100 py-2" type="submit">
         Sign Up
       </button>
@@ -38,4 +59,111 @@
     </form>
   </div>
 </main>
+{% endblock %}
+
+{% block script %}
+<script>
+  const username = document.getElementById("username");
+  const emailField = document.getElementById("email");
+  const password = document.getElementById("password");
+  const confirmPassword = document.getElementById("confirmPassword");
+  const phone = document.getElementById("phone");
+  const cnicNo = document.getElementById("id-card");
+  const err = document.getElementById("error");
+  const errDiv = document.getElementById("errorDiv");
+  const button = document.getElementById("button");
+
+  const showError = (msg) => {
+    err.textContent = msg;
+    errDiv.classList.remove("d-none");
+    button.disabled = true;
+  };
+
+  const clearError = () => {
+    err.textContent = "";
+    errDiv.classList.add("d-none");
+    button.disabled = false;
+  };
+
+  const validateUserName = () => {
+    const userPattern = /^[A-Za-z0-9_]+$/;
+    const value = username.value.trim();
+
+    if (!value) showError("Please add your username");
+    else if (value.length > 20)
+      showError("Username should not exceed 20 characters");
+    else if (!userPattern.test(value))
+      showError("Username can only contain letters, numbers, and underscores");
+    else clearError();
+  };
+
+  const validateEmail = () => {
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const value = emailField.value.trim();
+
+    if (!value) showError("Please add your email");
+    else if (!emailPattern.test(value)) showError("Please enter a valid email");
+    else clearError();
+  };
+
+  const validatePassword = () => {
+    const value = password.value.trim();
+
+    if (!value) showError("Please add a password");
+    else if (value.length < 8)
+      showError("Password must be at least 8 characters long");
+    else clearError();
+  };
+
+  const validateConfirmPassword = () => {
+    const value = confirmPassword.value.trim();
+
+    if (!value) showError("Please confirm your password");
+    else if (value !== password.value.trim())
+      showError("Passwords do not match");
+    else clearError();
+  };
+
+  const validateCnicNo = () => {
+    const value = cnicNo.value.trim();
+    const cnicPattern = /^\d{5}-\d{7}-\d{1}$/;
+
+    if (!value) showError("Please enter your CNIC");
+    else if (!cnicPattern.test(value))
+      showError("Please enter valid CNIC with Dashes and 13 Digits");
+    else if (value.length > 16) showError("Please enter 13 Digits with dashes");
+    else clearError();
+  };
+
+  const validatePhoneNumber = () => {
+    const value = phone.value.trim();
+    const pattern = /^03\d{2}-\d{7}$/;
+
+    if (!value) showError("Please enter phone number");
+    else if (!pattern.test(value))
+      showError("Please enter valid number with format 03XX-XXXXXXX");
+    else clearError();
+  };
+  // add listeners
+
+  emailField.addEventListener("input", validateEmail);
+  password.addEventListener("input", validatePassword);
+
+  if (username && confirmPassword && cnicNo && phone) {
+    username.addEventListener("input", validateUserName);
+    confirmPassword.addEventListener("input", validateConfirmPassword);
+    cnicNo.addEventListener("input", validateCnicNo);
+    phone.addEventListener("input", validatePhoneNumber);
+
+    // run initial validations
+    validateCnicNo();
+    validatePhoneNumber();
+    validateConfirmPassword();
+    validateUserName();
+  }
+
+  // run initial validations
+  validatePassword();
+  validateEmail();
+</script>
 {% endblock %}

@@ -20,20 +20,22 @@ def return_login_page(request):
             login(request, user)
             return redirect("warehouse:status")
         else:
-            messages.info(request, "Authentication failed")
+            messages.error(request, "Authentication failed")
     return render(request, "users/login.html")
 
 def return_signup_page(request):
     form = CreateUserWithCredentials()
     if request.method == 'POST':
-        
         form = CreateUserWithCredentials(request.POST)
         if form.is_valid():
-            user = form.save()
-            messages.success(request, "Signup Successfull")
-            return redirect("login")
-        else:
-            return messages.info(request, "Wrong username or password")
+            try:
+                user = form.save()
+                messages.success(request, "✓ Signup Successful! Please login with your credentials.")
+                return redirect("login")
+            except Exception as e:
+                messages.error(request, f"Error creating account: {str(e)}")
+                form.add_error(None, "An unexpected error occurred. Please try again.")
+                
     context = {"form": form}
     return render(request, "users/signup.html", context)
 

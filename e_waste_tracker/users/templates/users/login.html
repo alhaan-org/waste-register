@@ -49,7 +49,9 @@
         />
         <label class="form-check-label" for="checkDefault"> Remember me </label>
       </div>
-
+      {% if field.errors %}
+      <div class="text-danger small">{{ field.errors }}</div>
+      {% endif %}
       <div class="mb-3">
         Don't have an account?
         <a href="{% url 'signup' %}">Create for Free</a>
@@ -59,7 +61,9 @@
           <span id="error" class="p-2"></span>
         </p>
       </div>
-      <button id="button" class="btn btn-primary w-100 py-2" type="submit">Sign in</button>
+      <button id="button" class="btn btn-primary w-100 py-2" type="submit">
+        Sign in
+      </button>
 
       <p class="mt-4 mb-0 text-body-secondary text-center">
         © Copyrights by Software Inc.
