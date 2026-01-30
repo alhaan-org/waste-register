@@ -1,0 +1,58 @@
+body {
+  background-color: #f8f9fa;
+  height: 100%;
+  display: flex;
+  overflow-x: hidden;
+}
+.sidebar {
+  width: 250px;
+  height: 100vh;
+  position: fixed;
+  background-color: #212529;
+  transition: all 0.3s ease;
+}
+.sidebar.collapsed {
+  width: 100px;
+}
+.sidebar .nav-link {
+  color: #adb5bd;
+  font-weight: 500;
+}
+.sidebar .nav-link:hover,
+.sidebar .nav-link.active {
+  color: #fff;
+  background-color: #343a40;
+}
+.sidebar-header {
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: 1rem;
+  text-align: center;
+  border-bottom: 1px solid #343a40;
+}
+.content {
+  height: 100vh;
+  overflow-y: auto;
+  flex-grow: 1;
+  padding: 20px;
+  transition: all 0.3s ease;
+}
+.toggle-btn {
+  background-color: transparent;
+  border: none;
+  color: #212529;
+  font-size: 1.4rem;
+}
+.profile {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  border-top: 1px solid #343a40;
+  padding: 1rem;
+}
+.profile img {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+}
