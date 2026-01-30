@@ -6,7 +6,7 @@ class Warehouse(models.Model):
     owner = models.OneToOneField("users.CustomUser", on_delete=models.CASCADE, related_name="warehouse_owner")
     manager = models.OneToOneField("users.CustomUser", on_delete=models.CASCADE, related_name="warehouse_manager")
     name = models.CharField(max_length=100, null=True)
-    address = models.CharField(max_length=255)
+    address = models.CharField(max_length=255, null=True, blank=True, default="Pending")
     gst_number = models.CharField(max_length=50, unique=True, null=True, blank=True)
     is_verified = models.BooleanField(default=False)
 
@@ -19,7 +19,7 @@ class Warehouse(models.Model):
         return f"{self.name} -> Owner: {self.owner}"
 
     def total_revenue(self):
-        t_revenue = self.items.filter(is_sold=True).aggregrate(
+        t_revenue = self.items.filter(is_sold=True).aggregate(
             total = Sum('sold_price')
         )['total'] or 0
         return t_revenue

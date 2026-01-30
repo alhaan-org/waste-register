@@ -9,5 +9,7 @@ def create_warehouse(sender, instance, created, **kwargs):
         Warehouse.objects.create(
             owner=instance,
             manager=instance,
-            name=f"{instance.username}'s Warehouse"
+            name=f"{instance.username}'s Warehouse",
+            address="Pending"
         )
+       
