@@ -8,7 +8,7 @@ from django.http import JsonResponse
 import json
 
 from .forms import ItemForm
-from .models import Warehouse, Item
+from .models import Item
 # Create your views here.
 
 @method_decorator(login_required(login_url="login"), name="dispatch")

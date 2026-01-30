@@ -20,7 +20,7 @@ def return_login_page(request):
             login(request, user)
             return redirect("warehouse:status")
         else:
-            messages.info(request, "Authentication failed")
+            messages.error(request, "Authentication failed")
     return render(request, "users/login.html")
 
 def return_signup_page(request):
@@ -33,7 +33,7 @@ def return_signup_page(request):
             messages.success(request, "Signup Successfull")
             return redirect("login")
         else:
-            return messages.info(request, "Wrong username or password")
+            messages.error(request, form.error_messages)
     context = {"form": form}
     return render(request, "users/signup.html", context)
 
